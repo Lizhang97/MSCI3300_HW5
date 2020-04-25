@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div>
+    <p><a href="{{ url_for('index')}}"> Home </a></p>
+    <h3> Winner Details </h3>
+
+    <form method="POST" action="">
+
+        {{ form.csrf_token }}
+        {{ form.id.label }} {{ form.id }}
+        <br>
+        {{ form.issued_year.label}} {{ form.issued_year }}
+        <br>
+        {{ form.first_name.label}} {{ form.first_name }}
+        <br>
+        {{ form.last_name.label}} {{ form.last_name }}
+        <br>
+        {{ form.country.label}} {{ form.country }}
+        <br>
+        {{ form.language_used.label}} {{ form.language_used }}
+        <br>
+
+        <input type="submit" formaction="{{url_for('update_winner', winner_id=form.id)}}" value="Update">
+        <input type="submit" formaction="{{url_for('delete_winner', winner_id=form.id)}}" value="Delete">
+    </form>
+</div>
+
+{% endblock %}

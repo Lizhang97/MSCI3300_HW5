@@ -1,0 +1,42 @@
+
+
+{% extends 'base.html' %}
+
+{% block body %}
+<h3> {{legend}} </h3>
+{% if winners %}
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Year</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Country </th>
+      <th scope="col">Language </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in winners %}
+    <tr>
+      <td> {{ row.issued_year }} </td>
+      <td> {{ row.first_name }} </td>
+      <td> {{ row.last_name }} </td>
+      <td> {{ row.country }} </td>
+      <td> {{ row.language_used}} </td>
+
+      <td>
+        <form action="{{ url_for('get_winner',winner_id=row.id)}}" method='POST'>
+          <button type="submit" class="btn btn-outline-dark">Details</button>
+        </form>
+      </td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+{% endif %}
+{% endblock %}
